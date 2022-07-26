@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { MetaData } from "@global/adapters/contentful/types";
+import { MetaData } from "@global/adapters/contentful/contentful.types";
 
 const Meta = ({ metaData }: { metaData: MetaData }) => {
   const {
