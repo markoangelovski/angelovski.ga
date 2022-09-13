@@ -1,7 +1,7 @@
 import { ProjectSummary } from "./ProjectSummary.types";
 
 const ProjectSummary = (props: ProjectSummary) => {
-  return <pre>{JSON.stringify(props, null, 2)}</pre>;
+  return <div>{JSON.stringify(props, null, 2)}</div>;
 };
 
 export default ProjectSummary;

@@ -4,12 +4,14 @@ import Header from "../Header/Header";
 import { LayoutProps } from "./Layout.types";
 
 const Layout = (props: LayoutProps) => {
-  const { metaData, children } = props;
+  const { metaData, children, globalComponents } = props;
+
+  const headerData = globalComponents.header;
 
   return (
     <>
       <Meta metaData={metaData} />
-      <Header />
+      <Header {...headerData} />
       <main>{children}</main>
     </>
   );

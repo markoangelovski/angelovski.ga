@@ -86,6 +86,7 @@ export default class ContentfulService {
   ): Promise<Result<Array<TypeHomepage | TypeProduct>>> {
     try {
       const data = await this.client.getEntries<TypeHomepage | TypeProduct>({
+        content_type: "page",
         ...filter,
         include: 6,
         limit: 1000
@@ -97,6 +98,31 @@ export default class ContentfulService {
     } catch (e) {
       return Result.fail<Array<TypeMetaData>>(
         `Fetching static pages failed with the error ${e}.`
+      );
+    }
+  }
+
+  async getGlobalComponents(): Promise<Result<Array<any>>> {
+    try {
+      // const footerData = await this.client.getEntries<any>({
+      //     content_type: 'footer',
+      //     include: 10,
+      //     limit: 1
+      // });
+      const headerData = await this.client.getEntries<any>({
+        content_type: "header",
+        include: 10,
+        limit: 1
+      });
+      // const footer: any[] = footerData.items.map((el) => el.fields);
+      const header: any[] = headerData.items.map(el => el.fields);
+      return Result.ok<any>({
+        // footer: footer[0],
+        header: header[0]
+      });
+    } catch (e) {
+      return Result.fail<Array<any>>(
+        `Fetching global components failed with the error ${e}.`
       );
     }
   }

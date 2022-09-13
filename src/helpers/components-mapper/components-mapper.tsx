@@ -1,12 +1,6 @@
-// import getConfig from 'next/config';
-
-// import { SeoHead } from 'types/contentful.types';
-import { Component } from "types/page.types";
-// import { IProcessEnvVariables } from 'types/envVariables.types';
 import { componentsMap } from "./components-map";
 
-// const { publicRuntimeConfig } = getConfig();
-// const config: IProcessEnvVariables = publicRuntimeConfig;
+import { Component } from "types/page.types";
 
 const getDynamicComponent = (component: string) => {
   const dynamicComponent = componentsMap[component];
@@ -20,15 +14,13 @@ const getDynamicComponent = (component: string) => {
 };
 
 const ComponentsMapper: React.FC<Component> = (props: Component) => {
-  const { data, currentPageUrl, pageType, component, pageId } = props;
+  const { data, component } = props;
 
   const componentName = component[0].toUpperCase() + component.slice(1);
   const Component: React.ComponentType<any> =
     getDynamicComponent(componentName);
 
-  return Component ? (
-    <Component {...data} currentPageUrl={currentPageUrl} />
-  ) : null;
+  return Component ? <Component {...data} /> : null;
 };
 
 export const ContentfulComponents = (props: {
@@ -40,8 +32,8 @@ export const ContentfulComponents = (props: {
     <>
       {Object.values(componentsProps).map((props, index) => (
         <ComponentsMapper
-          data={props}
           component={props.component || ""}
+          data={props}
           key={index}
         />
       ))}
