@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 
 import { HeaderProps } from "./Header.types";
+import { imgLoader } from "@global/helpers/image/image";
 
 const Header = (props: HeaderProps) => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -64,11 +65,12 @@ const Header = (props: HeaderProps) => {
           <a className="flex">
             <div className="flex p-2">
               <Image
-                src={"https:" + heroImage.image.src}
+                src={heroImage.image.src}
                 alt={heroImage.imageAltText}
                 title={heroImage.imageTitle}
                 width={30}
                 height={30}
+                loader={imgLoader}
               />
             </div>
             <span className="self-center text-white">{heroTitle}</span>
@@ -81,7 +83,7 @@ const Header = (props: HeaderProps) => {
               type="button"
               className="inline-flex w-full items-center justify-center px-4 py-2 text-sm font-medium text-white shadow-sm"
               id="menu-button"
-              aria-expanded={`${menuOpen}`}
+              aria-expanded={menuOpen}
               aria-haspopup="true"
               onClick={() => setMenuOpen(!menuOpen)}
             >
@@ -111,7 +113,7 @@ const Header = (props: HeaderProps) => {
               tabIndex={-1}
             >
               {navDropdown.map((item, i) => (
-                <div className="py-1" role="none">
+                <div className="py-1" role="none" key={i}>
                   <Link href={item.destination}>
                     <a
                       onClick={() => setMenuOpen(false)}
