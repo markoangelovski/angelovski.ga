@@ -62,12 +62,11 @@ const Header = (props: HeaderProps) => {
     <header className="bg-slate-800">
       <div className="mx-auto flex max-w-7xl justify-between">
         <Link href="/">
-          <a className="flex">
+          <a title={heroImage.imageTitle} className="flex">
             <div className="flex p-2">
               <Image
                 src={heroImage.image.src}
                 alt={heroImage.imageAltText}
-                title={heroImage.imageTitle}
                 width={30}
                 height={30}
                 loader={imgLoader}
