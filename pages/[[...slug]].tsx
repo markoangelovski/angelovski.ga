@@ -6,24 +6,36 @@ import type {
 } from "next";
 
 import ContentfulService from "@global/adapters/contentful/contentful.service";
-import { TrimStructure } from "@global/adapters/contentful/contentful.adapter";
+import {
+  parseRefJSON,
+  refReplacer,
+  TrimStructure
+} from "@global/adapters/contentful/contentful.adapter";
 import Result from "@global/adapters/result";
 import {
   TypeHomepage,
   TypeMetaData,
+  TypePage,
   TypeProduct
 } from "@global/adapters/contentful/contentful.types";
 import { buildSlug } from "@global/helpers/url/url";
 
 import Layout from "../src/components/Layout/Layout";
+import { PageProps } from "types/page.types";
+import { ContentfulComponents } from "@global/helpers/components-mapper/components-mapper";
 
-const Home: NextPage = ({
-  metaData
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+// const Page: NextPage = ({
+//   metaData
+// }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Page = (props: PageProps) => {
+  const { metaData, components } = props;
+  const componentsData = [parseRefJSON(components)];
+
   return (
     <>
       <Layout metaData={metaData}>
-        <div>random</div>
+        <ContentfulComponents componentsProps={componentsData[0].content} />
+        <div>bla</div>
       </Layout>
     </>
   );
@@ -60,12 +72,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // getStaticProps only passes the "slug" of the page
   // because of this page needs to be fetched based on the slug
   // slug of the page must be unique
-  const pagesResult: Result<(TypeHomepage | TypeProduct)[]> =
-    await contentfulService.getPages({
-      content_type: pageSlug === "/" ? "homepage" : "product",
-      "fields.metaData.sys.contentType.sys.id": "metaData",
-      "fields.metaData.fields.slug": `${pageSlug}`
-    });
+  const pagesResult: Result<TypePage[]> = await contentfulService.getPages({
+    content_type: "page",
+    "fields.metaData.sys.contentType.sys.id": "metaData",
+    "fields.metaData.fields.slug": `${pageSlug}`
+  });
 
   if (pagesResult.isFailure) {
     throw new Error(pagesResult.error);
@@ -80,9 +91,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const pageInfo = TrimStructure(pageData.fields.metaData);
 
+  // "content" comes from Contentful, it is the name of the Reference field "Content" where all page sections are linked
+  pageData.fields.content = TrimStructure(pageData.fields.content);
+
+  // Escape circural reference
+  const pageComponentsJsonString = JSON.stringify(
+    pageData.fields,
+    refReplacer()
+  );
+
   return {
-    props: { metaData: pageInfo }
+    props: { metaData: pageInfo, components: pageComponentsJsonString }
   };
 };
 
-export default Home;
+export default Page;

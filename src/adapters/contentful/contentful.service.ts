@@ -7,7 +7,12 @@
 // @ts-nocheck
 import * as contentful from "contentful";
 import Result from "../result";
-import { TypeHomepage, TypeMetaData, TypeProduct } from "./contentful.types";
+import {
+  TypeHomepage,
+  TypeMetaData,
+  TypePage,
+  TypeProduct
+} from "./contentful.types";
 // import { IPageFields } from './types1';
 
 /** Class representing an api to Contentful. All Contentful data manipulation (fetching, posting, updating)

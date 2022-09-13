@@ -51,6 +51,14 @@ export interface TypeMetaDataFields {
 
 export type TypeMetaData = Contentful.Entry<TypeMetaDataFields>;
 
+export interface TypePageFields {
+  entryTitle: Contentful.EntryFields.Symbol;
+  metaData: Contentful.Entry<TypeMetaDataFields>;
+  content?: Contentful.Entry<Record<string, any>>[];
+}
+
+export type TypePage = Contentful.Entry<TypePageFields>;
+
 export interface TypeProductFields {
   entryTitle: Contentful.EntryFields.Symbol;
   metaData: Contentful.Entry<TypeMetaDataFields>;
@@ -64,57 +72,14 @@ export interface TypeProductFields {
 
 export type TypeProduct = Contentful.Entry<TypeProductFields>;
 
-export type MetaData = {
-  entryTitle: string;
-  canonicalUrl: string;
-  slug: string;
-  title: string;
-  metaTitle: string;
-  metaDescription: string;
-  metaOgType: string;
-  metaOgUrl: string;
-  metaOgTitle: string;
-  metaOgDescription: string;
-  metaOgImage: {
-    entryTitle: string;
-    imageTitle: string;
-    imageAltText: string;
-    image: {
-      title: string;
-      description: string;
-      url: string;
-      size: number;
-      width: number;
-      height: number;
-      fileName: string;
-      contentType: string;
-      src: string;
-    };
-    component: string;
-    __typename: string;
-  };
-  twitterCard: string;
-  twitterUrl: string;
-  twitterTitle: string;
-  twitterDescription: string;
-  twitterImage: {
-    entryTitle: string;
-    imageTitle: string;
-    imageAltText: string;
-    image: {
-      title: string;
-      description: string;
-      url: string;
-      size: number;
-      width: number;
-      height: number;
-      fileName: string;
-      contentType: string;
-      src: string;
-    };
-    component: string;
-    __typename: string;
-  };
-  __typename: string;
-  componentId: string;
-};
+export interface TypeProjectSummaryFields {
+  entryTitle: Contentful.EntryFields.Symbol;
+  screenshots: Contentful.Entry<TypeImageFields>[];
+  title: Contentful.EntryFields.Symbol;
+  shortDescription: Contentful.EntryFields.Text;
+  productUrlLink: Contentful.Entry<TypeButtonFields>;
+  builtWith: Contentful.Entry<TypeImageFields>[];
+  viewMoreDetailsButton: Contentful.Entry<TypeButtonFields>;
+}
+
+export type TypeProjectSummary = Contentful.Entry<TypeProjectSummaryFields>;
