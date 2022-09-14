@@ -26,6 +26,7 @@ const Header = (props: HeaderProps) => {
       return (
         <Image
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          alt=""
           width={36}
           height={46}
         />

@@ -14,6 +14,7 @@ export type ImageType = {
   entryTitle: string;
   imageTitle: string;
   imageAltText: string;
+  imageUrl: string;
   image: ImageDetails;
   component: string;
   __typename: string;
