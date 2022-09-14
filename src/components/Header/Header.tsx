@@ -21,7 +21,15 @@ const Header = (props: HeaderProps) => {
   }, []);
 
   const renderThemeChanger = () => {
-    if (!mounted) return null;
+    // To prevent layout shift. https://www.npmjs.com/package/next-themes
+    if (!mounted)
+      return (
+        <Image
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          width={36}
+          height={46}
+        />
+      );
 
     const currentTheme = theme === "system" ? systemTheme : theme;
 

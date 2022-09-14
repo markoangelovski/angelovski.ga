@@ -1,18 +1,20 @@
+export type ImageDetails = {
+  title: string;
+  description: string;
+  url: string;
+  size: number;
+  width: number;
+  height: number;
+  fileName: string;
+  contentType: string;
+  src: string;
+};
+
 export type ImageType = {
   entryTitle: string;
   imageTitle: string;
   imageAltText: string;
-  image: {
-    title: string;
-    description: string;
-    url: string;
-    size: number;
-    width: number;
-    height: number;
-    fileName: string;
-    contentType: string;
-    src: string;
-  };
+  image: ImageDetails;
   component: string;
   __typename: string;
 };

@@ -12,7 +12,7 @@ const Layout = (props: LayoutProps) => {
     <>
       <Meta metaData={metaData} />
       <Header {...headerData} />
-      <main>{children}</main>
+      <main className="mx-auto max-w-7xl px-2">{children}</main>
     </>
   );
 };
