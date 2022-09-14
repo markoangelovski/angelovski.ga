@@ -9,6 +9,7 @@ const ProjectSummary = (props: ProjectSummary) => {
     title,
     shortDescription,
     productUrlLink,
+    builtWithTitle,
     builtWithCollection,
     viewMoreDetailsButton
   } = props;
@@ -29,7 +30,7 @@ const ProjectSummary = (props: ProjectSummary) => {
             <InternalLink {...productUrlLink} />
           </li>
         </ul>
-        <p className="mt-2 font-light">Built with:</p>
+        <p className="mt-2 font-light">{builtWithTitle}</p>
         <div className="flex flex-wrap">
           {builtWithImgs.map((img, i) => (
             <BuiltWithImg key={i} {...img} />

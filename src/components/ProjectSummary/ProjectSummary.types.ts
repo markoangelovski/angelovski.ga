@@ -8,6 +8,7 @@ export interface ProjectSummary {
   title: string;
   shortDescription: string;
   productUrlLink: LinkType;
+  builtWithTitle: string;
   builtWithCollection: {
     items: ImageType[];
   };

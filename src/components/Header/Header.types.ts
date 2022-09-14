@@ -4,5 +4,6 @@ export type HeaderProps = {
   entryTitle: string;
   heroImage: ImageType;
   heroTitle: string;
+  dropdownTitle: string;
   projectsDropdownCollection: { items: LinkType[] };
 };

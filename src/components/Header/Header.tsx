@@ -12,7 +12,8 @@ const Header = (props: HeaderProps) => {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const { heroTitle, heroImage, projectsDropdownCollection } = props;
+  const { heroTitle, heroImage, dropdownTitle, projectsDropdownCollection } =
+    props;
 
   const navDropdown = projectsDropdownCollection.items;
 
@@ -95,7 +96,7 @@ const Header = (props: HeaderProps) => {
               aria-haspopup="true"
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              Projects
+              {dropdownTitle}
               <svg
                 className={`-mr-1 ml-2 h-5 w-5 ${menuOpen && "rotate-180"}`}
                 xmlns="http://www.w3.org/2000/svg"
