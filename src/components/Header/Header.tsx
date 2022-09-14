@@ -58,7 +58,7 @@ const Header = (props: HeaderProps) => {
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
             viewBox="0 0 20 20"
-            fill="white"
+            fill="currentColor"
           >
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
           </svg>
@@ -68,7 +68,7 @@ const Header = (props: HeaderProps) => {
   };
 
   return (
-    <header className="bg-slate-800">
+    <header className="border-b-[1px] border-gray-300 dark:border-gray-700 dark:bg-neutral-800">
       <div className="mx-auto flex max-w-7xl justify-between">
         <Link href="/">
           <a title={heroImage.imageTitle} className="flex">
@@ -81,7 +81,7 @@ const Header = (props: HeaderProps) => {
                 loader={imgLoader}
               />
             </div>
-            <span className="self-center text-white">{heroTitle}</span>
+            <span className="self-center ">{heroTitle}</span>
           </a>
         </Link>
 
@@ -89,7 +89,7 @@ const Header = (props: HeaderProps) => {
           <div className="relative flex text-left">
             <button
               type="button"
-              className="inline-flex w-full items-center justify-center px-4 py-2 text-sm font-medium text-white shadow-sm"
+              className="inline-flex w-full items-center justify-center px-4 py-2 text-sm font-medium  shadow-sm"
               id="menu-button"
               aria-expanded={menuOpen}
               aria-haspopup="true"
@@ -97,7 +97,7 @@ const Header = (props: HeaderProps) => {
             >
               Projects
               <svg
-                className="-mr-1 ml-2 h-5 w-5"
+                className={`-mr-1 ml-2 h-5 w-5 ${menuOpen && "rotate-180"}`}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -114,18 +114,22 @@ const Header = (props: HeaderProps) => {
             <div
               className={`${
                 !menuOpen && "hidden"
-              } absolute right-0 z-10 mt-11 origin-top-right bg-slate-800 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none`}
+              } absolute right-0 z-10 mt-11 origin-top-right border bg-white focus:outline-none dark:border-gray-700 dark:bg-neutral-800`}
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"
               tabIndex={-1}
             >
               {navDropdown.map((item, i) => (
-                <div className="py-1" role="none" key={i}>
+                <div
+                  className="py-1 hover:bg-neutral-100 hover:dark:bg-neutral-700"
+                  role="none"
+                  key={i}
+                >
                   <Link href={item.destination}>
                     <a
                       onClick={() => setMenuOpen(false)}
-                      className={`${item.eventClass} block px-4 py-2 text-sm text-white`}
+                      className={`${item.eventClass} block px-4 py-2 text-sm `}
                       role="menuitem"
                       tabIndex={-1}
                       id="menu-item-0"

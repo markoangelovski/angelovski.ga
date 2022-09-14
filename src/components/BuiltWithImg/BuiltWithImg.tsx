@@ -9,7 +9,7 @@ const BuiltWithImg = (props: ImageType) => {
   const { image, imageAltText, imageTitle, imageUrl } = props;
 
   return (
-    <div className="m-2 h-12 w-12 rounded-full dark:overflow-hidden dark:bg-white">
+    <div className="m-2 h-12 w-12 rounded-full hover:bg-slate-200 dark:overflow-hidden dark:bg-white hover:dark:overflow-visible dark:hover:bg-slate-200">
       <Link href={imageUrl}>
         <a
           className="flex cursor-pointer items-center justify-center"

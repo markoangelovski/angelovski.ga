@@ -21,7 +21,7 @@ const ProjectSummary = (props: ProjectSummary) => {
   const builtWithImgs = builtWithCollection.items;
 
   return (
-    <section className="mt-5 border-b-2 border-black dark:border-white xl:flex">
+    <section className="border-b-[1px] border-gray-300 pt-5 dark:border-gray-700 xl:flex">
       <div className="">
         <Image
           src={screenshot.image.src}

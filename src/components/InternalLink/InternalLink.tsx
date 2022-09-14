@@ -21,7 +21,7 @@ const InternalLink = (props: LinkType) => {
     return (
       <Link href={props.destination}>
         <a
-          className={`${props.eventClass}  inline-block rounded-sm bg-red-700 px-4 py-2 font-semibold text-white`}
+          className={`${props.eventClass} inline-block rounded-sm bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-800 active:bg-red-900`}
           target={`${props.externalLink ? "_blank" : "_self"}`}
           title={props.altText}
           data-action-detail={props.eventLabel}
