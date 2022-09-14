@@ -1,3 +1,4 @@
+import * as CFRichTextTypes from "@contentful/rich-text-types";
 import * as Contentful from "contentful";
 
 export interface TypeButtonFields {
@@ -13,18 +14,21 @@ export interface TypeButtonFields {
 
 export type TypeButton = Contentful.Entry<TypeButtonFields>;
 
-export interface TypeHomepageFields {
-  entryTitle: Contentful.EntryFields.Symbol;
-  metaData: Contentful.Entry<TypeMetaDataFields>;
-  productTiles: Contentful.Entry<TypeProductFields>[];
+export interface TypeHeaderFields {
+  entryTitle?: Contentful.EntryFields.Symbol;
+  heroImage: Contentful.Entry<TypeImageFields>;
+  heroTitle: Contentful.EntryFields.Symbol;
+  dropdownTitle?: Contentful.EntryFields.Symbol;
+  projectsDropdown: Contentful.Entry<TypeButtonFields>[];
 }
 
-export type TypeHomepage = Contentful.Entry<TypeHomepageFields>;
+export type TypeHeader = Contentful.Entry<TypeHeaderFields>;
 
 export interface TypeImageFields {
   entryTitle: Contentful.EntryFields.Symbol;
   imageTitle: Contentful.EntryFields.Symbol;
   imageAltText: Contentful.EntryFields.Symbol;
+  imageUrl?: Contentful.EntryFields.Symbol;
   image: Contentful.Asset;
 }
 
@@ -54,23 +58,25 @@ export type TypeMetaData = Contentful.Entry<TypeMetaDataFields>;
 export interface TypePageFields {
   entryTitle: Contentful.EntryFields.Symbol;
   metaData: Contentful.Entry<TypeMetaDataFields>;
-  content?: Contentful.Entry<Record<string, any>>[];
+  content?: Contentful.Entry<
+    TypeProjectDetailFields | TypeProjectSummaryFields
+  >[];
 }
 
 export type TypePage = Contentful.Entry<TypePageFields>;
 
-export interface TypeProductFields {
-  entryTitle: Contentful.EntryFields.Symbol;
-  metaData: Contentful.Entry<TypeMetaDataFields>;
-  screenshots: Contentful.Entry<TypeImageFields>[];
-  title: Contentful.EntryFields.Symbol;
-  shortDescription: Contentful.EntryFields.Text;
-  productUrl: Contentful.Entry<TypeButtonFields>;
-  builtWith: Contentful.Entry<TypeImageFields>[];
-  viewMoreDetailsButton: Contentful.Entry<TypeButtonFields>;
+export interface TypeProjectDetailFields {
+  entryTitle?: Contentful.EntryFields.Symbol;
+  title?: Contentful.EntryFields.Symbol;
+  titleType?: "H1" | "H2" | "H3";
+  description?: CFRichTextTypes.Block | CFRichTextTypes.Inline;
+  imagesSection?: Contentful.Entry<TypeImageFields>[];
+  secondaryTitle?: Contentful.EntryFields.Symbol;
+  secondaryTitleType?: "H1" | "H2" | "H3";
+  secondaryDescription?: CFRichTextTypes.Block | CFRichTextTypes.Inline;
 }
 
-export type TypeProduct = Contentful.Entry<TypeProductFields>;
+export type TypeProjectDetail = Contentful.Entry<TypeProjectDetailFields>;
 
 export interface TypeProjectSummaryFields {
   entryTitle: Contentful.EntryFields.Symbol;
@@ -78,6 +84,7 @@ export interface TypeProjectSummaryFields {
   title: Contentful.EntryFields.Symbol;
   shortDescription: Contentful.EntryFields.Text;
   productUrlLink: Contentful.Entry<TypeButtonFields>;
+  builtWithTitle?: Contentful.EntryFields.Symbol;
   builtWith: Contentful.Entry<TypeImageFields>[];
   viewMoreDetailsButton: Contentful.Entry<TypeButtonFields>;
 }

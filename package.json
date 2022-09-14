@@ -11,6 +11,8 @@
     "generate-components-map": "ts-node ./src/helpers/components-mapper/generate-components-map.ts"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.12.1",
+    "@contentful/rich-text-types": "^15.12.1",
     "@types/node": "18.6.0",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
