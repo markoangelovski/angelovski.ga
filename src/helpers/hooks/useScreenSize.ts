@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 const DESKTOP_BREAKPOINT = 992;
 const TABLET_BREAKPOINT = 768;
 
-// Not currently used
 const useScreenSize = () => {
   const [width, setWidth] = useState<null | number>(null);
 

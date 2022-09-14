@@ -1,10 +1,7 @@
-import Image from "next/image";
-
-import { imgAspectRatio, imgLoader } from "@global/helpers/image/image";
-
 import { ProjectSummary } from "./ProjectSummary.types";
 import InternalLink from "../InternalLink/InternalLink";
 import BuiltWithImg from "../BuiltWithImg/BuiltWithImg";
+import ImageModal from "../ImageModal/ImageModal";
 
 const ProjectSummary = (props: ProjectSummary) => {
   const {
@@ -17,20 +14,12 @@ const ProjectSummary = (props: ProjectSummary) => {
   } = props;
 
   const screenshot = screenshotsCollection.items[0];
-  const ar = imgAspectRatio(screenshot);
   const builtWithImgs = builtWithCollection.items;
 
   return (
     <section className="border-b-[1px] border-gray-300 pt-5 dark:border-gray-700 xl:flex">
       <div className="">
-        <Image
-          src={screenshot.image.src}
-          alt={screenshot.imageAltText}
-          title={screenshot.imageTitle}
-          width={600}
-          height={600 / ar}
-          loader={imgLoader}
-        />
+        <ImageModal image={screenshot} />
       </div>
       <div className="mb-5 xl:ml-5">
         <h2 className="mt-2 text-xl font-medium xl:mt-0">{title}</h2>
