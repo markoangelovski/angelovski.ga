@@ -16,11 +16,23 @@ const RenderTitle = ({
 
   switch (titleType) {
     case "H1":
-      return <h1 className="py-10 text-3xl">{title}</h1>;
+      return (
+        <h1 className="py-10 text-3xl font-medium text-cyan-700 dark:text-cyan-300">
+          {title}
+        </h1>
+      );
     case "H2":
-      return <h2 className="py-5 text-2xl">{title}</h2>;
+      return (
+        <h2 className="py-5 text-2xl font-medium text-cyan-700 dark:text-cyan-300">
+          {title}
+        </h2>
+      );
     case "H3":
-      return <h3>{title}</h3>;
+      return (
+        <h3 className="py-5 text-xl font-medium text-cyan-700 dark:text-cyan-300">
+          {title}
+        </h3>
+      );
     default:
       return null;
   }
@@ -74,10 +86,10 @@ const ProjectDetail = (props: any) => {
 
       {renderRichText(description, options)}
 
-      <div className="flex flex-col items-center">
+      <div className="mb-5 flex flex-col items-center">
         {images.map((image: any, i: number) => {
           return (
-            <div key={i} className="mt-5 max-w-5xl">
+            <div key={i} className="my-5 max-w-5xl">
               <ImageWithModal image={image} width={1024} />
               <p className="text-sm">{image.image.description}</p>
             </div>
@@ -88,7 +100,7 @@ const ProjectDetail = (props: any) => {
       <RenderTitle title={secondaryTitle} titleType={secondaryTitleType} />
 
       {renderRichText(secondaryDescription, options)}
-      <hr className="mt-2" />
+      <hr className="mt-2 dark:border-neutral-500" />
     </section>
   );
 };

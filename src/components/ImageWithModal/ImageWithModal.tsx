@@ -17,9 +17,9 @@ const ImageWithModal = ({
 
   const toggleModal = (state: boolean) => {
     // Prevents scrolling when modal is open.
-    // state
-    //   ? (document.body.style.overflow = "hidden")
-    //   : (document.body.style.overflow = "visible");
+    state
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "visible");
     setOpen(state);
   };
 
@@ -85,7 +85,9 @@ const ImageWithModal = ({
               height={image.image.height}
               loader={imgLoader}
             />
-            <p className="text-sm">{image.image.description}</p>
+            <p className="bg-neutral-300 p-2 text-sm text-black">
+              {image.image.description}
+            </p>
           </div>
         </div>
       )}
