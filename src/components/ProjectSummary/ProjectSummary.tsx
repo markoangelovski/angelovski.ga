@@ -1,7 +1,7 @@
 import { ProjectSummary } from "./ProjectSummary.types";
 import InternalLink from "../InternalLink/InternalLink";
 import BuiltWithImg from "../BuiltWithImg/BuiltWithImg";
-import ImageModal from "../ImageModal/ImageModal";
+import ImageWithModal from "../ImageWithModal/ImageWithModal";
 
 const ProjectSummary = (props: ProjectSummary) => {
   const {
@@ -18,9 +18,9 @@ const ProjectSummary = (props: ProjectSummary) => {
   const builtWithImgs = builtWithCollection.items;
 
   return (
-    <section className="border-b-[1px] border-gray-300 pt-5 dark:border-gray-700 xl:flex">
+    <section className="border-b-[1px] border-gray-300  pt-5 dark:border-gray-700 md:flex">
       <div className="">
-        <ImageModal image={screenshot} />
+        <ImageWithModal image={screenshot} />
       </div>
       <div className="mb-5 xl:ml-5">
         <h2 className="mt-2 text-xl font-medium xl:mt-0">{title}</h2>

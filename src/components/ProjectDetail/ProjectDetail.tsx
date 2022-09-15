@@ -1,6 +1,9 @@
-import { documentToReactComponents as renderRichText } from "@contentful/rich-text-react-renderer";
-
-import ImageModal from "../ImageModal/ImageModal";
+import {
+  documentToReactComponents as renderRichText,
+  Options
+} from "@contentful/rich-text-react-renderer";
+import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types";
+import ImageWithModal from "../ImageWithModal/ImageWithModal";
 
 const RenderTitle = ({
   title,
@@ -13,9 +16,9 @@ const RenderTitle = ({
 
   switch (titleType) {
     case "H1":
-      return <h1>{title}</h1>;
+      return <h1 className="py-10 text-3xl">{title}</h1>;
     case "H2":
-      return <h2>{title}</h2>;
+      return <h2 className="py-5 text-2xl">{title}</h2>;
     case "H3":
       return <h3>{title}</h3>;
     default:
@@ -36,15 +39,56 @@ const ProjectDetail = (props: any) => {
   } = props;
   const images = imagesSectionCollection.items;
 
+  const options: Options = {
+    renderMark: {
+      [MARKS.BOLD]: text => <strong>{text}</strong>,
+      [MARKS.ITALIC]: text => <em>{text}</em>
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) =>
+        // Rich text field in Contentful injects an empty p tag at the end of rich text. This is to prevent the extra p tag from rendering.
+        Array.isArray(children) &&
+        !!children[0] && <p className="mt-2">{children}</p>,
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="mt-2 list-disc pl-5">{children}</ul>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <ol className="mt-2 list-decimal pl-5">{children}</ol>
+      ),
+      [BLOCKS.LIST_ITEM]: (node, children) => {
+        // Text in li tags is wrapped in p tags by default. This is a workaround to remove p tags. It does not support nested elements. https://github.com/contentful/rich-text/issues/126#issuecomment-981068613
+        const normalisedChildren = renderRichText(node as Document, {
+          renderNode: {
+            [BLOCKS.PARAGRAPH]: (node, children) => children,
+            [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>
+          }
+        });
+        return normalisedChildren;
+      }
+    }
+  };
+  // console.log("description", description);
   return (
     <section>
       <RenderTitle title={title} titleType={titleType} />
-      {renderRichText(description)}
-      {images.map((image: any, i: number) => (
-        <ImageModal key={i} image={image} />
-      ))}
+
+      {renderRichText(description, options)}
+
+      <div className="flex flex-col items-center">
+        {images.map((image: any, i: number) => {
+          return (
+            <div key={i} className="mt-5 max-w-5xl">
+              <ImageWithModal image={image} width={1024} />
+              <p className="text-sm">{image.image.description}</p>
+            </div>
+          );
+        })}
+      </div>
+
       <RenderTitle title={secondaryTitle} titleType={secondaryTitleType} />
-      {renderRichText(secondaryDescription)}
+
+      {renderRichText(secondaryDescription, options)}
+      <hr className="mt-2" />
     </section>
   );
 };
