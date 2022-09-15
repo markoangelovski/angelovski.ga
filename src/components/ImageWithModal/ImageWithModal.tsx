@@ -75,16 +75,18 @@ const ImageWithModal = ({
               </svg>
             </span>
 
-            <Image
-              onClick={() => setOpen(!open)}
-              className="z-10 cursor-pointer"
-              src={image.image.src}
-              alt={image.imageAltText}
-              title={image.imageTitle}
-              width={image.image.width}
-              height={image.image.height}
-              loader={imgLoader}
-            />
+            <div className="bg-neutral-500">
+              <Image
+                onClick={() => setOpen(!open)}
+                className="z-10 cursor-pointer"
+                src={image.image.src}
+                alt={image.imageAltText}
+                title={image.imageTitle}
+                width={image.image.width}
+                height={image.image.height}
+                loader={imgLoader}
+              />
+            </div>
             <p className="bg-neutral-300 p-2 text-sm text-black">
               {image.image.description}
             </p>

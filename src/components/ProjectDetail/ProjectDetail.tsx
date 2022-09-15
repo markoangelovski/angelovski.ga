@@ -49,7 +49,7 @@ const ProjectDetail = (props: any) => {
     secondaryTitleType,
     secondaryDescription
   } = props;
-  const images = imagesSectionCollection.items;
+  const images = imagesSectionCollection?.items;
 
   const options: Options = {
     renderMark: {
@@ -87,7 +87,7 @@ const ProjectDetail = (props: any) => {
       {renderRichText(description, options)}
 
       <div className="mb-5 flex flex-col items-center">
-        {images.map((image: any, i: number) => {
+        {images?.map((image: any, i: number) => {
           return (
             <div key={i} className="my-5 max-w-5xl">
               <ImageWithModal image={image} width={1024} />
