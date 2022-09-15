@@ -55,8 +55,12 @@ const ImageWithModal = ({
           onClick={() => toggleModal(false)}
           className="fixed inset-0 z-10 flex h-screen w-full cursor-default items-center justify-center bg-neutral-500/75"
         >
-          <div className="flex max-w-[1600px] flex-col">
+          <div
+            className="flex max-w-[1600px] flex-col"
+            onClick={e => e.stopPropagation()}
+          >
             <span
+              onClick={() => toggleModal(false)}
               title="Close"
               className="z-20 h-6 w-6 translate-y-6 cursor-pointer self-end bg-neutral-300"
             >
@@ -77,7 +81,7 @@ const ImageWithModal = ({
 
             <div className="bg-neutral-500">
               <Image
-                className="z-10 cursor-pointer"
+                className="z-10"
                 src={image.image.src}
                 alt={image.imageAltText}
                 title={image.imageTitle}
