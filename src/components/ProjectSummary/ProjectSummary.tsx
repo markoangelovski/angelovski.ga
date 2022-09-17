@@ -1,5 +1,5 @@
 import { ProjectSummary } from "./ProjectSummary.types";
-import InternalLink from "../InternalLink/InternalLink";
+import CustomBtnLink from "../CustomBtnLink/CustomBtnLink";
 import BuiltWithImg from "../BuiltWithImg/BuiltWithImg";
 import ImageWithModal from "../ImageWithModal/ImageWithModal";
 
@@ -27,7 +27,7 @@ const ProjectSummary = (props: ProjectSummary) => {
         <p className="mt-2 font-light">{shortDescription}</p>
         <ul className="mt-2 list-disc pl-5">
           <li>
-            <InternalLink {...productUrlLink} />
+            <CustomBtnLink {...productUrlLink} />
           </li>
         </ul>
         <p className="mt-2 font-light">{builtWithTitle}</p>
@@ -37,7 +37,7 @@ const ProjectSummary = (props: ProjectSummary) => {
           ))}
         </div>
         <div className="my-4">
-          <InternalLink {...viewMoreDetailsButton} />
+          <CustomBtnLink {...viewMoreDetailsButton} />
         </div>
       </div>
     </section>

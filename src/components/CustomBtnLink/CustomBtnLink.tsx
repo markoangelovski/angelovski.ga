@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { LinkType } from "types/contentful.types";
 
-const InternalLink = (props: LinkType) => {
+const CustomBtnLink = (props: LinkType) => {
   if (props.type === "Link")
     return (
       <Link href={props.destination}>
@@ -33,4 +33,4 @@ const InternalLink = (props: LinkType) => {
   return null;
 };
 
-export default InternalLink;
+export default CustomBtnLink;

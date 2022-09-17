@@ -2,10 +2,11 @@ import {
   documentToReactComponents as renderRichText,
   Options
 } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types";
+import { MARKS, BLOCKS, INLINES, Document } from "@contentful/rich-text-types";
 
 import ImageWithModal from "../ImageWithModal/ImageWithModal";
 import EmbeddedDiagram from "../EmbeddedDiagram/EmbeddedDiagram";
+import CustomBtnLink from "../CustomBtnLink/CustomBtnLink";
 
 import { ProjectDetail } from "./ProjectDetail.types";
 import { ImageType } from "types/contentful.types";
@@ -62,6 +63,11 @@ const ProjectDetail = (props: ProjectDetail) => {
       [MARKS.ITALIC]: text => <em>{text}</em>
     },
     renderNode: {
+      [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+        if (node.data.target.sys.contentType.sys.id === "button") {
+          return <CustomBtnLink {...node.data.target.fields} />;
+        }
+      },
       [BLOCKS.PARAGRAPH]: (node, children) =>
         // Rich text field in Contentful injects an empty p tag at the end of rich text. This is to prevent the extra p tag from rendering.
         Array.isArray(children) &&
@@ -86,7 +92,7 @@ const ProjectDetail = (props: ProjectDetail) => {
   };
 
   return (
-    <section>
+    <section className="md:px-5">
       <RenderTitle title={title} titleType={titleType} />
 
       {renderRichText(description, options)}

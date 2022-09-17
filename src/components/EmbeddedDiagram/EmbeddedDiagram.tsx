@@ -15,6 +15,7 @@ const EmbeddedDiagram = ({ diagram }: { diagram: Diagram }) => {
   const diagramSrc = diagramIframeSource?.content[0].content[0].value;
 
   if (screen?.isMobile)
+    // Redirect user to new tab on mobile and display the entire diagram
     return (
       <div className="my-5">
         <Link href={diagramSrc}>
