@@ -75,6 +75,7 @@ const Header = (props: HeaderProps) => {
           <a title={heroImage.imageTitle} className="flex">
             <div className="flex p-2">
               <Image
+                priority
                 src={heroImage.image.src}
                 alt={heroImage.imageAltText}
                 width={30}

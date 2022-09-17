@@ -7,6 +7,10 @@ import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types";
 import ImageWithModal from "../ImageWithModal/ImageWithModal";
 import EmbeddedDiagram from "../EmbeddedDiagram/EmbeddedDiagram";
 
+import { ProjectDetail } from "./ProjectDetail.types";
+import { ImageType } from "types/contentful.types";
+import { Diagram } from "../EmbeddedDiagram/EmbeddedDiagram.types";
+
 const RenderTitle = ({
   title,
   titleType
@@ -40,8 +44,7 @@ const RenderTitle = ({
   }
 };
 
-// TODO: Handle these types!!
-const ProjectDetail = (props: any) => {
+const ProjectDetail = (props: ProjectDetail) => {
   const {
     title,
     titleType,
@@ -49,6 +52,7 @@ const ProjectDetail = (props: any) => {
     imagesSectionCollection,
     diagramsSectionCollection
   } = props;
+
   const images = imagesSectionCollection?.items;
   const diagrams = diagramsSectionCollection?.items;
 
@@ -88,14 +92,14 @@ const ProjectDetail = (props: any) => {
       {renderRichText(description, options)}
 
       <div className="mb-5 flex flex-col items-center">
-        {images?.map((image: any, i: number) => (
+        {images?.map((image: ImageType, i: number) => (
           <div key={i} className="my-5 max-w-5xl">
             <ImageWithModal image={image} width={1024} />
             <p className="text-sm">{image.image.description}</p>
           </div>
         ))}
 
-        {diagrams?.map((diagram: any, i: number) => (
+        {diagrams?.map((diagram: Diagram, i: number) => (
           <EmbeddedDiagram key={i} diagram={diagram} />
         ))}
       </div>

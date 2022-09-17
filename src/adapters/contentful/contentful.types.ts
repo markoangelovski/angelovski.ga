@@ -14,8 +14,19 @@ export interface TypeButtonFields {
 
 export type TypeButton = Contentful.Entry<TypeButtonFields>;
 
+export interface TypeEmbedDiagramFields {
+  entryTitle: Contentful.EntryFields.Symbol;
+  title: Contentful.EntryFields.Symbol;
+  description?: Contentful.EntryFields.Text;
+  height?: Contentful.EntryFields.Integer;
+  mobileImage?: Contentful.Entry<TypeImageFields>;
+  diagramIframeSource?: CFRichTextTypes.Block | CFRichTextTypes.Inline;
+}
+
+export type TypeEmbedDiagram = Contentful.Entry<TypeEmbedDiagramFields>;
+
 export interface TypeHeaderFields {
-  entryTitle?: Contentful.EntryFields.Symbol;
+  entryTitle: Contentful.EntryFields.Symbol;
   heroImage: Contentful.Entry<TypeImageFields>;
   heroTitle: Contentful.EntryFields.Symbol;
   dropdownTitle?: Contentful.EntryFields.Symbol;
@@ -66,14 +77,12 @@ export interface TypePageFields {
 export type TypePage = Contentful.Entry<TypePageFields>;
 
 export interface TypeProjectDetailFields {
-  entryTitle?: Contentful.EntryFields.Symbol;
+  entryTitle: Contentful.EntryFields.Symbol;
   title?: Contentful.EntryFields.Symbol;
   titleType?: "H1" | "H2" | "H3";
   description?: CFRichTextTypes.Block | CFRichTextTypes.Inline;
   imagesSection?: Contentful.Entry<TypeImageFields>[];
-  secondaryTitle?: Contentful.EntryFields.Symbol;
-  secondaryTitleType?: "H1" | "H2" | "H3";
-  secondaryDescription?: CFRichTextTypes.Block | CFRichTextTypes.Inline;
+  diagramsSection?: Contentful.Entry<TypeEmbedDiagramFields>[];
 }
 
 export type TypeProjectDetail = Contentful.Entry<TypeProjectDetailFields>;
