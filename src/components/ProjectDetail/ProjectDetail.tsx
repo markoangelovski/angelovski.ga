@@ -36,7 +36,7 @@ const RenderTitle = ({
       );
     case "H3":
       return (
-        <h3 className="py-5 text-xl font-medium text-cyan-700 dark:text-cyan-300">
+        <h3 className="pt-5 text-xl font-medium text-cyan-700 dark:text-cyan-300">
           {title}
         </h3>
       );
@@ -68,6 +68,11 @@ const ProjectDetail = (props: ProjectDetail) => {
           return <CustomBtnLink {...node.data.target.fields} />;
         }
       },
+      [BLOCKS.HEADING_3]: (node, children) => (
+        <h3 className="pt-5 text-xl font-medium text-cyan-700 dark:text-cyan-300">
+          {children}
+        </h3>
+      ),
       [BLOCKS.PARAGRAPH]: (node, children) =>
         // Rich text field in Contentful injects an empty p tag at the end of rich text. This is to prevent the extra p tag from rendering.
         Array.isArray(children) &&

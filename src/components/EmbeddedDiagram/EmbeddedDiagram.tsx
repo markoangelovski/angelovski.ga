@@ -35,7 +35,7 @@ const EmbeddedDiagram = ({ diagram }: { diagram: Diagram }) => {
     );
 
   return (
-    <div className="group flex w-full flex-col md:max-w-5xl">
+    <div className="group my-5 flex w-full flex-col md:max-w-5xl">
       <iframe
         title={title}
         className="w-full"
