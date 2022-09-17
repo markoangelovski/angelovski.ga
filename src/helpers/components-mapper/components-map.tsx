@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 
 export const componentsMap: Record<string, any> = {
     BuiltWithImg: dynamic(() => import(/* webpackChunkName: "components" */'../../components/BuiltWithImg/BuiltWithImg')),
+    EmbeddedDiagram: dynamic(() => import(/* webpackChunkName: "components" */'../../components/EmbeddedDiagram/EmbeddedDiagram')),
     Header: dynamic(() => import(/* webpackChunkName: "components" */'../../components/Header/Header')),
     ImageWithModal: dynamic(() => import(/* webpackChunkName: "components" */'../../components/ImageWithModal/ImageWithModal')),
     InternalLink: dynamic(() => import(/* webpackChunkName: "components" */'../../components/InternalLink/InternalLink')),

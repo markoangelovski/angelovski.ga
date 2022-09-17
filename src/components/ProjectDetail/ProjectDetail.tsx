@@ -3,7 +3,9 @@ import {
   Options
 } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types";
+
 import ImageWithModal from "../ImageWithModal/ImageWithModal";
+import EmbeddedDiagram from "../EmbeddedDiagram/EmbeddedDiagram";
 
 const RenderTitle = ({
   title,
@@ -45,11 +47,10 @@ const ProjectDetail = (props: any) => {
     titleType,
     description,
     imagesSectionCollection,
-    secondaryTitle,
-    secondaryTitleType,
-    secondaryDescription
+    diagramsSectionCollection
   } = props;
   const images = imagesSectionCollection?.items;
+  const diagrams = diagramsSectionCollection?.items;
 
   const options: Options = {
     renderMark: {
@@ -79,7 +80,7 @@ const ProjectDetail = (props: any) => {
       }
     }
   };
-  // console.log("description", description);
+
   return (
     <section>
       <RenderTitle title={title} titleType={titleType} />
@@ -87,19 +88,18 @@ const ProjectDetail = (props: any) => {
       {renderRichText(description, options)}
 
       <div className="mb-5 flex flex-col items-center">
-        {images?.map((image: any, i: number) => {
-          return (
-            <div key={i} className="my-5 max-w-5xl">
-              <ImageWithModal image={image} width={1024} />
-              <p className="text-sm">{image.image.description}</p>
-            </div>
-          );
-        })}
+        {images?.map((image: any, i: number) => (
+          <div key={i} className="my-5 max-w-5xl">
+            <ImageWithModal image={image} width={1024} />
+            <p className="text-sm">{image.image.description}</p>
+          </div>
+        ))}
+
+        {diagrams?.map((diagram: any, i: number) => (
+          <EmbeddedDiagram key={i} diagram={diagram} />
+        ))}
       </div>
 
-      <RenderTitle title={secondaryTitle} titleType={secondaryTitleType} />
-
-      {renderRichText(secondaryDescription, options)}
       <hr className="mt-2 dark:border-neutral-500" />
     </section>
   );
