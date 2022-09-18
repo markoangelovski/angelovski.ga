@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { imgAspectRatio, imgLoader } from "@global/helpers/image/image";
 
 import { ImageType } from "types/contentful.types";
 import useScreenSize from "@global/helpers/hooks/useScreenSize";
+import { CursorIcon } from "../EmbeddedDiagram/EmbeddedDiagram";
 
 const ImageWithModal = ({
   image,
@@ -46,7 +48,7 @@ const ImageWithModal = ({
           loader={imgLoader}
         />
         <span className="invisible mt-1 self-end text-xs text-gray-500 group-hover:visible dark:text-gray-400">
-          Click on the image to view in full size.
+          <CursorIcon /> Click on the image to view in full size.
         </span>
       </div>
 
@@ -80,15 +82,25 @@ const ImageWithModal = ({
             </span>
 
             <div className="bg-neutral-500">
-              <Image
-                className="z-10"
-                src={image.image.src}
-                alt={image.imageAltText}
-                title={image.imageTitle}
-                width={image.image.width}
-                height={image.image.height}
-                loader={imgLoader}
-              />
+              <Link href={"https:" + image.image.src}>
+                <a
+                  className="event_external_link cursor-pointer"
+                  data-action-detail={
+                    "View image in new tab - " + image.imageTitle
+                  }
+                  target="_blank"
+                >
+                  <Image
+                    className="z-10"
+                    src={image.image.src}
+                    alt={image.imageAltText}
+                    title={image.imageTitle + " - Click to view in new tab"}
+                    width={image.image.width}
+                    height={image.image.height}
+                    loader={imgLoader}
+                  />
+                </a>
+              </Link>
             </div>
             <p className="bg-neutral-300 p-2 text-sm text-black">
               {image.image.description}
