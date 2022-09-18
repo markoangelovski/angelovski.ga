@@ -116,7 +116,7 @@ const Header = (props: HeaderProps) => {
             <div
               className={`${
                 !menuOpen && "hidden"
-              } absolute right-0 z-10 mt-11 origin-top-right border bg-white focus:outline-none dark:border-gray-700 dark:bg-neutral-800`}
+              } absolute right-0 z-10 mt-11 w-40 origin-top-right border bg-white focus:outline-none dark:border-gray-700 dark:bg-neutral-800`}
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"
@@ -134,7 +134,7 @@ const Header = (props: HeaderProps) => {
                       className={`${item.eventClass} block px-4 py-2 text-sm `}
                       role="menuitem"
                       tabIndex={-1}
-                      id="menu-item-0"
+                      id={"menu-item-" + i}
                       title={item.altText}
                       data-action-detail={item.eventLabel}
                     >

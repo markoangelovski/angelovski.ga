@@ -19,7 +19,7 @@ const ProjectSummary = (props: ProjectSummary) => {
 
   return (
     <section className="border-b-[1px] border-gray-300  pt-5 dark:border-gray-700 md:flex">
-      <div className="">
+      <div className="shrink-0">
         <ImageWithModal image={screenshot} />
       </div>
       <div className="mb-5 xl:ml-5">
