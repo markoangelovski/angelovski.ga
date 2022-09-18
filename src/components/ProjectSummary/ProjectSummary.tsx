@@ -25,7 +25,7 @@ const ProjectSummary = (props: ProjectSummary) => {
       <div className="mb-5 xl:ml-5">
         <h2 className="mt-2 text-xl font-medium xl:mt-0">{title}</h2>
         <p className="mt-2 font-light">{shortDescription}</p>
-        <ul className="mt-2 list-disc pl-5">
+        <ul className="mt-2 list-disc pl-10">
           <li>
             <CustomBtnLink {...productUrlLink} />
           </li>
