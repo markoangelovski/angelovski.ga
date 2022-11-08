@@ -74,11 +74,6 @@ const ProjectDetail = (props: ProjectDetail) => {
     },
     renderNode: {
       ...nestedNodes.renderNode,
-      // [INLINES.EMBEDDED_ENTRY]: (node, children) => {
-      //   if (node.data.target.sys.contentType.sys.id === "button") {
-      //     return <CustomBtnLink {...node.data.target.fields} />;
-      //   }
-      // },
       [BLOCKS.HEADING_2]: (node, children) => (
         <h3 className="pt-5 text-2xl font-medium text-cyan-700 dark:text-cyan-300">
           {children}
