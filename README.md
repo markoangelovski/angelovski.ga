@@ -6,7 +6,8 @@
 
 ## Domain
 
-- Deployed on domain [angelovski.ga](https://angelovski.ga).
+- Deployed on domain [angelovski.top](https://angelovski.top).
+- **Deprecated:** Deployed on domain [angelovski.ga](https://angelovski.ga).
 
 ## Hosting
 
