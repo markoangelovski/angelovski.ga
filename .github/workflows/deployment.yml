@@ -39,7 +39,7 @@ jobs:
           npm ci
           npm run build
           npm run export
-          echo www.angelovski.top > ./out/CNAME
+          echo angelovski.top > ./out/CNAME
           touch ./out/.nojekyll
         env:
           NODE_ENV: ${{ secrets.NODE_ENV }}
